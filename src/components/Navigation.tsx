@@ -2,8 +2,8 @@ import React from 'react';
 import { Home, MessageCircle, BarChart3, TrendingUp } from 'lucide-react';
 
 interface NavigationProps {
-  currentView: 'home' | 'chat' | 'dashboard' | 'journey';
-  onViewChange: (view: 'home' | 'chat' | 'dashboard' | 'journey') => void;
+  currentView: 'landing' | 'home' | 'chat' | 'dashboard' | 'journey';
+  onViewChange: (view: 'landing' | 'home' | 'chat' | 'dashboard' | 'journey') => void;
 }
 
 export const Navigation: React.FC<NavigationProps> = ({ currentView, onViewChange }) => {

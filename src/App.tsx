@@ -6,6 +6,7 @@ import { ChatInterface } from './components/ChatInterface';
 import { Dashboard } from './components/Dashboard';
 import { UserJourney } from './components/UserJourney';
 import { Navigation } from './components/Navigation';
+import ProjectLandingPage from './components/ProjectLandingPage';
 
 export type EmotionData = {
   emotion: string;
@@ -46,7 +47,7 @@ export type UserStats = {
 };
 
 function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'chat' | 'dashboard' | 'journey'>('home');
+  const [currentView, setCurrentView] = useState<'landing' | 'home' | 'chat' | 'dashboard' | 'journey'>('landing');
   const [emotionData, setEmotionData] = useState<EmotionData | null>(null);
   const [shlokaData, setShlokaData] = useState<ShlokaData | null>(null);
   const [userSessions, setUserSessions] = useState<UserSession[]>([]);
@@ -206,10 +207,17 @@ function App() {
       
       {/* Main Content */}
       <div className="relative z-10">
-      <Header userStats={userStats} />
-      <Navigation currentView={currentView} onViewChange={setCurrentView} />
+      {currentView !== 'landing' && (
+        <>
+          <Header userStats={userStats} />
+          <Navigation currentView={currentView} onViewChange={setCurrentView} />
+        </>
+      )}
       
       <main className="container mx-auto px-4 py-8">
+        {currentView === 'landing' && (
+          <ProjectLandingPage onStart={() => setCurrentView('home')} />
+        )}
         {currentView === 'home' && (
           <div className="space-y-8">
             <div className="text-center mb-12 relative">

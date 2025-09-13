@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Trophy, Flame, Target, BookOpen, Heart, TrendingUp, CheckCircle, Star, Gift } from 'lucide-react';
+import { Trophy, Flame, Target, BookOpen, Heart, TrendingUp, CheckCircle, Circle, Star, Gift } from 'lucide-react';
 import { UserStats } from '../App';
 
 interface DashboardProps {
@@ -100,6 +100,15 @@ export const Dashboard: React.FC<DashboardProps> = ({ userStats }) => {
   const topEmotions = Object.entries(userStats.emotionDistribution)
     .sort(([,a], [,b]) => b - a)
     .slice(0, 3);
+
+  const getEmotionColor = (emotion: string, index: number) => {
+    const colors = [
+      'from-purple-500 to-pink-500',
+      'from-blue-500 to-purple-500', 
+      'from-pink-500 to-red-500'
+    ];
+    return colors[index] || 'from-gray-500 to-gray-600';
+  };
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -231,7 +240,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ userStats }) => {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Enhanced Daily Tasks */}
-        <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-10 border border-white/20">
+        <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-10 border border-white/20">
           <div className="flex items-center space-x-4 mb-8">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
               <Star className="w-6 h-6 text-white" />
@@ -297,7 +306,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ userStats }) => {
         </div>
 
         {/* Enhanced Achievements */}
-        <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-10 border border-white/20">
+        <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-10 border border-white/20">
           <div className="flex items-center space-x-4 mb-8">
             <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
               <Gift className="w-6 h-6 text-white" />
